@@ -1,0 +1,9 @@
+{
+  "model_name": "RandomForest",
+  "val_accuracy": 0.9995,
+  "test_accuracy": 1.0,
+  "val_auc_roc": 1.0,
+  "test_auc_roc": 1.0,
+  "val_f1": 0.9983,
+  "test_f1": 1.0
+}
