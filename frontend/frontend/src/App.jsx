@@ -57,10 +57,18 @@ export default function App() {
     }
   }, []);
 
-  const wsUrl = useMemo(() => {
-    const userId = session?.user?.user_id;
-    return userId ? `ws://localhost:8000/ws/${userId}` : null;
-  }, [session]);
+const wsUrl = useMemo(() => {
+  const userId = session?.user?.user_id;
+  if (!userId) return null;
+
+  const baseUrl = import.meta.env.VITE_API_URL;
+
+  const wsBase = baseUrl
+    .replace("https://", "wss://")
+    .replace("http://", "ws://");
+
+  return `${wsBase}/ws/${userId}`;
+}, [session]);
 
   const { status, lastMessage } = useWebSocket(wsUrl, { debug: false, enableMockFallback: false });
 
